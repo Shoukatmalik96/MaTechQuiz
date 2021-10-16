@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="auth-wrapper auth-v3">
+    <div class="auth-content">
+        <div class="card">
+            <div class="row align-items-stretch text-center">
+                <div class="col-md-6 img-card-side">
+                    <img src="/content/images/auth/auth-side1.jpg" alt="" class="img-fluid">
+                    <div class="img-card-side-content">
+                        <img src="/content/images/logo-dark.svg" alt="" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <div class="text-left">
+                            <h4 class="mb-3 f-w-600">Welcome to <span class="text-primary">Nextro</span></h4>
+                            <p class="text-muted mb-4">Welcome back, Please login <br>into a account</p>
+                        </div>
+                        <form action="@Url.Action("Login","Authentication")" method="post">
+                            <div class="">
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i data-feather="mail"></i></span>
+                                    </div>
+                                    <input type="email" class="form-control" placeholder="Email address" name="Email">
+                                </div>
+                                <div class="input-group mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i data-feather="lock"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" placeholder="Password" name="Password">
+                                </div>
+                                <div class="form-group text-left my-2">
+                                    <div class="float-right">
+                                        <a href="#!" class="text-primary"><span>Forgot Password?</span></a>
+                                    </div>
+                                    <div class="custom-control custom-checkbox d-inline-block">
+                                        <input type="checkbox" class="custom-control-input input-primary" id="customCheckdefh2" checked="">
+                                        <label class="custom-control-label" for="customCheckdefh2">Remember me</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button class="btn btn-light-primary mt-2">Cancel</button>
+                                <button class="btn btn-primary mt-2" type="submit">Signin</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,179 @@
+﻿@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nextro Able Bootstrap 4 Admin Template</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="/content/images/favicon.svg" type="image/x-icon">
+
+    <!-- font css -->
+    <link rel="stylesheet" href="/content/fonts/font-awsome-pro/css/pro.min.css">
+    <link rel="stylesheet" href="/content/fonts/feather.css">
+    <link rel="stylesheet" href="/content/fonts/fontawesome.css">
+
+    <!-- vendor css -->
+    <link rel="stylesheet" href="/content/css/style.css">
+    <link rel="stylesheet" href="/content/css/customizer.css">
+
+</head>
+<body class="">
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
+    </div>
+    <!-- [ Pre-loader ] End -->
+
+    <!-- [ Mobile header ] start -->
+    @{ Html.RenderPartial("_MobileHeader");}
+    <!-- [ Mobile header ] End -->
+
+    <!-- [ LeftSideMenu menu ] start -->
+    @{Html.RenderPartial("_LeftSideMenu"); }
+    <!-- [ LeftSideMenu menu ] end -->
+
+    <!-- [ Header ] start -->
+    @{ Html.RenderPartial("_Header");}
+    <!-- [Header  ] end -->
+
+    <!-- [ Main Content ] start -->
+    @RenderBody()
+    <!-- [ Main Content ] end -->
+
+
+    <!-- Required Js -->
+    <script src="/content/js/vendor-all.min.js"></script>
+    <script src="/content/js/plugins/bootstrap.min.js"></script>
+    <script src="/content/js/plugins/feather.min.js"></script>
+    <script src="/content/js/pcoded.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="/content/js/plugins/clipboard.min.js"></script>
+    <script src="/content/js/uikit.min.js"></script>
+
+    <!-- Apex Chart -->
+    <!--<script src="/content/js/plugins/apexcharts.min.js"></script>-->
+
+    <script>
+        // header option
+        $('#pct-toggler').on('click', function () {
+            $('.pct-customizer').toggleClass('active');
+
+        });
+        // header option
+        $('#cust-sidebrand').change(function () {
+            if ($(this).is(":checked")) {
+                $('.theme-color.brand-color').removeClass('d-none');
+                $('.m-header').addClass('bg-dark');
+            } else {
+                $('.m-header').removeClassPrefix('bg-');
+                $('.m-header > .b-brand > .logo-lg').attr('src', '/content/images/logo-dark.svg');
+                $('.theme-color.brand-color').addClass('d-none');
+            }
+        });
+        // Header Color
+        $('.brand-color > a').on('click', function () {
+            var temp = $(this).attr('data-value');
+            // $('.header-color > a').removeClass('active');
+            // $('.pcoded-header').removeClassPrefix('brand-');
+            // $(this).addClass('active');
+            if (temp == "bg-default") {
+                $('.m-header').removeClassPrefix('bg-');
+            } else {
+                $('.m-header').removeClassPrefix('bg-');
+                $('.m-header > .b-brand > .logo-lg').attr('src', '/content/images/logo.svg');
+                $('.m-header').addClass(temp);
+            }
+        });
+        // Header Color
+        $('.header-color > a').on('click', function () {
+            var temp = $(this).attr('data-value');
+            // $('.header-color > a').removeClass('active');
+            // $('.pcoded-header').removeClassPrefix('brand-');
+            // $(this).addClass('active');
+            if (temp == "bg-default") {
+                $('.pc-header').removeClassPrefix('bg-');
+            } else {
+                $('.pc-header').removeClassPrefix('bg-');
+                $('.pc-header').addClass(temp);
+            }
+        });
+        // sidebar option
+        $('#cust-sidebar').change(function () {
+            if ($(this).is(":checked")) {
+                $('.pc-sidebar').addClass('light-sidebar');
+                $('.pc-horizontal .topbar').addClass('light-sidebar');
+                // $('.m-header > .b-brand > .logo-lg').attr('src', '/content/images/logo-dark.svg');
+            } else {
+                $('.pc-sidebar').removeClass('light-sidebar');
+                $('.pc-horizontal .topbar').removeClass('light-sidebar');
+                // $('.m-header > .b-brand > .logo-lg').attr('src', '/content/images/logo.svg');
+            }
+        });
+        $.fn.removeClassPrefix = function (prefix) {
+            this.each(function (i, it) {
+                var classes = it.className.split(" ").map(function (item) {
+                    return item.indexOf(prefix) === 0 ? "" : item;
+                });
+                it.className = classes.join(" ");
+            });
+            return this;
+        };
+    </script>
+
+    <!-- custom-chart js -->
+    <script src="/content/js/pages/dashboard-sale.js"></script>
+</body>
+
+</html>
