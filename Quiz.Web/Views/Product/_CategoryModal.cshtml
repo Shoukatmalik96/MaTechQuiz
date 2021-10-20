@@ -1,0 +1,115 @@
+﻿@using Quiz.Web.Models.ViewModels
+@using Quiz.Services.Enumerations
+@model CategoryModel
+@{
+
+    int categoryID = 0;
+    var categoryName = "";
+    var categoryDescription = "";
+    int displaySeq = 0;
+    var btnText = "Save";
+    var btnID = "AddBtn";
+    var formId = "categoryForm";
+    var heading = "Add Category";
+    var state = "Insert";
+
+    if (Model.Action == ActionTypeEnum.Update)
+    {
+        categoryID = Model.Category.CategoryID;
+        categoryName = Model.Category.CategoryName;
+        categoryDescription = Model.Category.CategoryDescription;
+        displaySeq = Model.Category.DisplaySeqNo.HasValue ? Model.Category.DisplaySeqNo.Value : 0;
+        btnText = "Update";
+        btnID = "updateBtn";
+        heading = "Update Category";
+        state = "update";
+    }
+    if (Model.Action == ActionTypeEnum.delete)
+    {
+        categoryID = Model.Category.CategoryID;
+        categoryName = "";
+        categoryDescription = ""; ;
+        displaySeq = 0;
+        btnText = "Delete";
+        btnID = "deleteBtn";
+        heading = "Delete Category";
+        state = "delete";
+    }
+
+
+}
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">@heading</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <form id="@formId">
+
+                <!--Form Hiddend Fields-->
+                <input type="hidden" id="CategoryID" name="CategoryID" value="@categoryID" />
+                <input type="hidden" id="state" name="State" value="@state" />
+
+
+                <div class="row">
+
+                    @if ( Model != null &&  Model.Action == ActionTypeEnum.Insert || Model.Action == ActionTypeEnum.Update)
+                    {
+                       <!--Modal Body-->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="floating-label" for="CategoryName">Name</label>
+                                    <input type="text" class="form-control" id="CategoryName" name="CategoryName"  placeholder="Enter category Name" value="@categoryName">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group fill">
+                                    <label class="floating-label" for="Description">Description</label>
+                                    <input type="text" class="form-control" id="CategoryDescription" name="CategoryDescription"  placeholder="Enter category Description" value="@categoryDescription">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group fill">
+                                    <label class="floating-label" for="DispalySeqNo">Display SeqNo</label>
+                                    <input type="int" class="form-control" id="DisplaySeqNo" name="DisplaySeqNo"  placeholder="Enter display SeqNo"value="@displaySeq">
+                                </div>
+                            </div>
+                    }
+                    else
+                    {
+                        <div class="col-12" style="text-align:center">Are you sure you want to delete this Category ?</div>
+                    }
+                    <div class="col-sm-12" style="text-align: center">
+                        <button class="btn btn-primary" type="button" id="@btnID">@btnText</button>
+                        <button class="btn btn-danger">Clear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#@btnID").click(function () {
+
+            $.ajax({
+                  type: "POSt",
+                  url: "@Url.Action("CategoryAction", "Product")",
+                  data: $("#@formId").serialize()
+            })
+            .done(function (response) {
+
+                $("#@formId").modal('hide');
+                window.location.reload();
+            });
+        });
+    });
+</script>

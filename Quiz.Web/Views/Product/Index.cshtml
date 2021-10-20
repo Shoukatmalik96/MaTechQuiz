@@ -1,0 +1,124 @@
+﻿@using Quiz.Web.Models.ViewModels
+@model CategoryListingModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<!-- [ Main Content ] start -->
+<div class="pc-container">
+    <div class="pcoded-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Products</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Cateogry</a></li>
+                            <li class="breadcrumb-item"><a href="#!">Products</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <!-- [ Main Content ] start -->
+        <div class="row">
+            <!-- subscribe start -->
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Parents List </h5>
+                    </div>
+
+                    <div id="accordion">
+                        <!--Category Product Listing-->
+                        @foreach (var category in Model.Categories)
+                        {
+                            <h3>@category.CategoryName</h3>
+                            <div>
+                                @{
+                                    CategoryProduct categoryProduct = new CategoryProduct();
+                                    categoryProduct.ProductModel = Model.CategoryProducts.Where(x => x.CatgoryID == category.CategoryID).ToList();
+                                    Html.RenderPartial("_Listing", categoryProduct);
+                                }
+                            </div>
+                        }
+
+                    </div>
+                    <div class="card-body">
+
+                        <div class="row align-items-center m-l-0">
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6 text-right">
+                                <button class="btn btn-success btn-sm mb-3 btn-round" onclick="ShowCategoryModal(this);" data-id="0" id="addCategory-1"><i class="feather icon-plus"></i> AddCategory</button>
+                            </div>
+                        </div>
+
+                        <!--Categories Listing-->
+                        <div class="table-responsive">
+                            @{
+                                CategoryListingModel categoryModel = new CategoryListingModel();
+                                categoryModel.Categories = Model.Categories;
+                                Html.RenderPartial("_categoryListing", categoryModel);
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- subscribe end -->
+        </div>
+        <!-- [ Main Content ] end -->
+    </div>
+</div>
+
+
+
+<!--Category Modal-->
+
+<div class="modal fade" id="category-Modal" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $("#accordion").accordion({
+            active: 2,
+            animate: 2000,
+            collapsible: true,
+            heightStyle: "content",
+            icons: { header: "ui-icons-plus", activeHeader: "ui-icon-minus" }
+
+        });
+    });
+
+
+   function ShowCategoryModal(item) {
+
+       var button = $(item).attr("id");
+       var clickButtonlabel = button.split("-")[0];
+       var categoryId = $(item).attr("data-id");
+       var performingAction = clickButtonlabel == "addCategory" ? "insert" : clickButtonlabel == "edit" ? "update" : "delete";
+
+      $.ajax({
+          type: "get",
+          data: { categoryID: categoryId, actionType: performingAction },
+          url: "@Url.Action("GetCatoryModal", "Product")",
+
+      }).done(function (data) {
+          $('#category-Modal').html(data).modal('show');
+
+      })
+    }
+</script>
+

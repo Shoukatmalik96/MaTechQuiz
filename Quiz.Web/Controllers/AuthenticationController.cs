@@ -26,12 +26,28 @@ namespace Quiz.Web.Controllers
         {
             string email = form["Email"];
             string password = form["Password"];
-            User user = UserServices.Instance.Login(email,password);
-            if (user != null)
+
+            //Backend Validations
+            if (String.IsNullOrEmpty(email) || String.IsNullOrEmpty(password))
             {
-                return RedirectToAction("Index", "Home");
-            } 
-            return RedirectToAction("Login");
+                TempData["Error"] = "Please fill all required fields!";
+                return View();
+            }
+
+            User user = UserServices.Instance.Login(email,password);
+
+            if (user == null)
+            {
+                TempData["Error"] = "Incorrect username or password!";
+                return RedirectToAction("Login");
+
+            }
+            else
+            {
+                TempData["Success"] = "Login Success !";
+            }
+           
+            return RedirectToAction("Index", "Home");
         }
 
 

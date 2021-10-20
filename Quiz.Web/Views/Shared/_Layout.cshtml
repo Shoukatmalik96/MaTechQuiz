@@ -37,7 +37,7 @@
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+       
     </body>
     </html>*@
 
@@ -53,6 +53,10 @@
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
+
+    <!-- Jquery cdn -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <!-- Favicon icon -->
     <link rel="icon" href="/content/images/favicon.svg" type="image/x-icon">
@@ -92,9 +96,7 @@
     @RenderBody()
     <!-- [ Main Content ] end -->
 
-
     <!-- Required Js -->
-    <script src="/content/js/vendor-all.min.js"></script>
     <script src="/content/js/plugins/bootstrap.min.js"></script>
     <script src="/content/js/plugins/feather.min.js"></script>
     <script src="/content/js/pcoded.min.js"></script>
@@ -102,8 +104,6 @@
     <script src="/content/js/plugins/clipboard.min.js"></script>
     <script src="/content/js/uikit.min.js"></script>
 
-    <!-- Apex Chart -->
-    <!--<script src="/content/js/plugins/apexcharts.min.js"></script>-->
 
     <script>
         // header option
@@ -174,6 +174,7 @@
 
     <!-- custom-chart js -->
     <script src="/content/js/pages/dashboard-sale.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 
 </html>

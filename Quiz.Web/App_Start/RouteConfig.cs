@@ -13,16 +13,17 @@ namespace Quiz.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            //routes.MapRoute(
-            //    name: "Login",
-            //    url: "login",
-            //    defaults: new { controller = "Authentication", action = "Login"}
-            //);
+            routes.MapRoute(  name: "CategoryProducts", url: "category-products", defaults: 
+                                                                 new { controller = "Product", action = "Index" } );
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Authentication", action = "Login", id = UrlParameter.Optional }
+            routes.MapRoute(  name: "Home",  url: "home", defaults: 
+                                                                new { controller = "Home", action = "Index" } );
+
+            routes.MapRoute( name: "Login", url: "login", defaults: 
+                                                               new { controller = "Authentication", action = "Login" });
+
+            routes.MapRoute( name: "Default",url: "{controller}/{action}/{id}", defaults: 
+                                                              new { controller = "Authentication", action = "Login", id = UrlParameter.Optional }
             );
         }
     }
