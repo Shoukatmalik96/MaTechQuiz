@@ -1,0 +1,44 @@
+﻿@using Quiz.Web.Models.ViewModels
+@model ProductListingModel
+
+<div class="table-responsive">
+    <table id="report-table" class="table table-bordered table-striped mb-0">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Code</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Products.Count() > 0)
+            {
+                foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>@product.Name</td>
+                        <td>@product.SKU</td>
+                        <td>@product.Description</td>
+                        <td>@product.Price</td>
+                        <td>@product.ProductCode</td>
+                        <td>
+                         
+                            <a href="#!" class="btn btn-info btn-sm" onclick="ShowProductModal(this);" data-id="@product.ProductID" id="edit-@product.ProductID">Edit</a>
+                            <a href="#!" class="btn btn-danger btn-sm" onclick="ShowProductModal(this);" data-id="@product.ProductID" id="delete-@product.ProductID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                @:<tr>
+                    <td>No Product found for this category</td>
+                @:</tr>
+            }
+        </tbody>
+    </table>
+</div>
+

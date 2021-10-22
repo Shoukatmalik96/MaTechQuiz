@@ -13,8 +13,11 @@ namespace Quiz.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(  name: "CategoryProducts", url: "category-products", defaults: 
-                                                                 new { controller = "Product", action = "Index" } );
+            routes.MapRoute(name: "ProductList", url: "products", defaults:
+                                                               new { controller = "Product", action = "Index" });
+
+            routes.MapRoute(  name: "CategoryList", url: "categories", defaults: 
+                                                                 new { controller = "Category", action = "Index" } );
 
             routes.MapRoute(  name: "Home",  url: "home", defaults: 
                                                                 new { controller = "Home", action = "Index" } );

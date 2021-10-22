@@ -1,5 +1,6 @@
 ﻿using Quiz.Data.Services;
 using Quiz.Services;
+using Quiz.Web.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,7 @@ namespace Quiz.Web.Controllers
                 return View();
             }
 
-            User user = UserServices.Instance.Login(email,password);
+            User user = UserServices.Instance.Login(email,password.Decrypt());
 
             if (user == null)
             {

@@ -9,20 +9,18 @@ namespace Quiz.Web.Helpers
 {
     public static class ExtentionMethods
     {
-        public static string GetMd5Hash(this string input)
+        public static string Decrypt(this string input)
         {
-         
-            using (MD5 md5Hash = MD5.Create())
+            StringBuilder hash = new StringBuilder();
+            MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider(); 
+            byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(input)); 
+            for (int i = 0; i < bytes.Length; i++)
             {
-                byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder sBuilder = new StringBuilder();
-
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-                return sBuilder.ToString();
+                hash.Append(bytes[i].ToString("x2"));
             }
+            return hash.ToString();
         }
+
+       
     }
 }

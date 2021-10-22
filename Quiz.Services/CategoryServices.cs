@@ -44,7 +44,7 @@ namespace Quiz.Services
         {
             using (var context = new QuizRepository())
             {
-                List<Product> products = context.Fetch<Product>("Select * from Products P inner join Categories C on P.CatgoryID = C.CategoryID where P.IsActive = 1 AND P.IsDeleted = 0 AND C.CategoryID IN(@0)", categoryIDs).ToList();
+                List<Product> products = context.Fetch<Product>("Select * from Products P inner join Categories C on P.CategoryID = C.CategoryID where P.IsActive = 1 AND P.IsDeleted = 0 AND C.CategoryID IN(@0)", categoryIDs).ToList();
                 return products;
             }
         }

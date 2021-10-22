@@ -1,0 +1,36 @@
+﻿@using Quiz.Web.Models.ViewModels
+@model CategoryListingModel
+
+<table id="report-table" class="table table-bordered table-striped mb-0">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            <th>Display Seq No</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Categories.Count() > 0)
+        {
+            foreach (var category in Model.Categories)
+            {
+                <tr>
+                    <td>@category.CategoryName</td>
+                    <td>@category.CategoryDescription</td>
+                    <td>@category.DisplaySeqNo</td>
+                    <td>
+
+                        <a href="#!" class="btn btn-info btn-sm" onclick="ShowCategoryModal(this);" data-id="@category.CategoryID" id="edit-@category.CategoryID">Edit</a>
+                        <a href="#!" class="btn btn-danger btn-sm" onclick="ShowCategoryModal(this);" data-id="@category.CategoryID" id="delete-@category.CategoryID">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <h3>No data found for categories list</h3>
+        }
+
+    </tbody>
+</table>

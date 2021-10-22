@@ -123,7 +123,7 @@ namespace Quiz.Data.Services
 		[Column] public decimal Price { get; set; }
 		[Column] public string ProductCode { get; set; }
 		[Column] public int ProductTypeId { get; set; }
-		[Column] public int CatgoryID { get; set; }
+		[Column] public int CategoryID { get; set; }
 		[Column] public bool IsActive { get; set; }
 		[Column] public bool IsDeleted { get; set; }
 		[Column] public DateTime CreatedOn { get; set; }

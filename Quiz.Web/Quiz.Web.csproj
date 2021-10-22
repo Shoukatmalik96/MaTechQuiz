@@ -121,12 +121,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExtentionMethods.cs" />
     <Compile Include="Models\ViewModels\CategoryViewModels.cs" />
+    <Compile Include="Models\ViewModels\ProductViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -931,9 +934,13 @@
     <Content Include="Views\Shared\_LeftSideMenu.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <Content Include="Views\Product\_Listing.cshtml" />
-    <Content Include="Views\Product\_CategoryModal.cshtml" />
-    <Content Include="Views\Product\_categoryListing.cshtml" />
+    <Content Include="Views\Product\_ProductTable.cshtml" />
+    <Content Include="Views\Product\_ProductModal.cshtml" />
+    <Content Include="Views\Product\ProductListing.cshtml" />
+    <Content Include="Views\Category\_CategoryListing.cshtml" />
+    <Content Include="Views\Category\_CategoryModal.cshtml" />
+    <Content Include="Views\Category\_Listing.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
